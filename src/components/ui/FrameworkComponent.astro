@@ -1,0 +1,10 @@
+---
+const { name, logo } = Astro.props;
+---
+
+<div class="p-4 flex flex-col items-center justify-center gap-2 rounded-xl bg-surface-light dark:bg-surface-dark shadow-sm text-center transition-colors duration-300 flex-1 cursor-default">
+    <div class="flex items-center justify-center">
+        <span class="material-symbols-outlined text-text-secondary-light dark:text-text-secondary-dark" style="font-size: 50px;">{logo}</span>
+    </div>
+    <p class="text-text-primary-light dark:text-text-primary-dark font-medium text-base">{name}</p>
+</div>

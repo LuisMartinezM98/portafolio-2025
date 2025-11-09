@@ -1,0 +1,14 @@
+/* Import Inter font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
+@import 'tailwindcss';
+@plugin "daisyui";
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+@custom-variant light (&:where([data-theme=light], [data-theme=light] *));
+
+@theme {
+    --font-display: 'Inter', sans-serif;
+    --color-surface-light: #ffffff;
+    --color-surface-dark:  #0f172a;
+    --color-secondary-light: #5c6a78;
+    --color-secondary-dark:  #a0b0c2;
+}

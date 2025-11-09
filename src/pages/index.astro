@@ -1,16 +1,185 @@
 ---
-
+import '../styles/globals.css'
+import { Image } from 'astro:assets';
+import Header from '@/components/ui/Header.astro';
+import ImageProfile from '@/components/ui/Image.astro';
+import ReactSvg from '@/components/svg/ReactSvg.astro'
+import FrameworkComponent from '@/components/ui/FrameworkComponent.astro'
+import Footer from '@/components/ui/Footer.astro'
+const FrameworksList =[
+	{
+		name: 'JavaScript',
+		logo: 'javascript'
+	},
+	{
+		name: 'TypeScript',
+		logo: 'code'
+	},
+	{
+		name: 'Node.js',
+		logo: 'terminal'
+	},
+	{
+		name: 'TailwindCSS',
+		logo: 'palette'
+	},
+	{
+		name: 'Next.js',
+		logo: 'view_quilt'
+	},
+	{
+		name: 'GraphQL',
+		logo: 'hub'
+	}
+]
 ---
 
-<html lang="en">
+<html lang="en" data-theme="light">
 	<head>
 		<meta charset="utf-8" />
+		<script>
+		  (function(){
+		    try {
+		      var t = null;
+		      try { t = localStorage.getItem('theme'); } catch(e) { t = null; }
+		      if (!t) {
+		        var prefersDark = false;
+		        try {
+		          prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+		        } catch(e) { prefersDark = false; }
+		        t = prefersDark ? 'dark' : 'light';
+		      }
+					document.documentElement.setAttribute('data-theme', t);
+					// Ensure Tailwind dark: utilities work immediately by toggling the class
+					try { if (t === 'dark') document.documentElement.classList.add('dark'); else document.documentElement.classList.remove('dark'); } catch(e) {}
+					try {
+						var loader = document.getElementById('page-loader');
+						if (loader) loader.setAttribute('data-theme', t);
+					} catch(e) { /* ignore */ }
+		    } catch(e) { /* ignore */ }
+		  })();
+		</script>
+		<style>
+		  #page-loader { background: #ffffff; color: #374151; }
+		  #page-loader .w-12 { border-color: #3b82f6; border-top-color: transparent; }
+
+		  @media (prefers-color-scheme: dark) {
+		    #page-loader { background: #0f172a; color: #cbd5e1; }
+		    #page-loader .w-12 { border-color: #60a5fa; border-top-color: transparent; }
+		  }
+		  html[data-theme='dark'] #page-loader { background: #0f172a; color: #cbd5e1; }
+		  html[data-theme='light'] #page-loader { background: #ffffff; color: #374151; }
+		</style>
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>Luis Martinez Portafolio</title>
 	</head>
-	<body>
-		<h1>Astro</h1>
+	<body class="font-display bg-gray-100 dark:bg-base-200">
+		<div id="page-loader" class="fixed inset-0 z-50 flex items-center justify-center  transition-opacity duration-300">
+			<div role="status" aria-live="polite" class="flex flex-col items-center gap-4">
+					<div class="w-12 h-12 rounded-full border-4 border-t-transparent animate-spin border-blue-500"></div>
+					<span class="text-sm text-gray-600 dark:text-gray-300">Cargando...</span>
+				</div>
+			</div>
+			<Header/>
+		<main class="container mx-auto px-4 pt-20"> 
+			<div class="flex justify-center items-center p-5">
+				<ImageProfile/>
+			</div>
+			<div class="text-center flex flex-col gap-3">
+				<h1 class="font-bold text-xl">Luis Martinez</h1>
+				<p class="text-blue-600/60 font-semibold">Software Enginner</p>
+				<p class="px-4 text-gray-400">I build intuitive, performant, and accesible applications for users.</p>
+			</div>
+			<div class="flex justify-center items-center mt-8 gap-6">
+				<a class="btn btn-soft btn-info" href="https://drive.google.com/file/d/1e_60PbQSDTbBASk4XsDSWXBGDpzaScGW/view?usp=sharing" target="_blank" rel="noopener noreferrer">View Resume</a>
+				<button class="btn btn-soft btn-primary" onclick="location.href='mailto:luiizmartinez@gmail.com'">Contact Me</button>
+			</div>
+			<div class="mt-8 ">
+				<h2 class="text-2xl font-bold">Featured Projects</h2>
+			</div>
+			<div class="mt-5 grid grid-cols-1 md:grid-cols-2 gap-6">
+				<div class="card bg-base-100 w-full shadow-sm p-0 border-[0.001rem] h-full flex flex-col overflow-hidden">
+					<figure class="w-full h-48 overflow-hidden">
+						<img
+							class="w-full h-full object-cover"
+							src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+							alt="Project image" />
+					</figure>
+					<div class="card-body flex flex-col justify-between p-4">
+						<div>
+							<h2 class="card-title text-blue-600/60">E-Commerce Store</h2>
+							<p class="text-gray-500 dark:text-gray-200">Demo Project to show my abilities using Next.js, Nest.js and MongoDB</p>
+						</div>
+						<div class="mt-4 flex justify-end gap-2">
+							<span class="badge badge-outline text-gray-700 border-gray-600 dark:border-gray-100 dark:text-gray-200">Next.js</span>
+							<span class="badge badge-outline text-gray-700 border-gray-600 dark:border-gray-100 dark:text-gray-200">Nest.js</span>
+							<span class="badge badge-outline text-gray-700 border-gray-600 dark:border-gray-100 dark:text-gray-200">MongoDB</span>
+						</div>
+					</div>
+				</div>
+				<div class="card bg-base-100 w-full shadow-sm p-0 border-[0.001rem] h-full flex flex-col overflow-hidden">
+					<figure class="w-full h-48 overflow-hidden">
+						<Image
+							class="w-full h-full object-cover"
+							src="/CumtualImage.png"
+							alt="Project image"
+							width={250}
+							height={100}
+							/>
+					</figure>
+					<div class="card-body flex flex-col justify-between p-4">
+						<div>
+							<h2 class="card-title text-blue-600/60">Cumtual Landing Page</h2>
+							<p class="text-gray-500 dark:text-gray-200">Cumtual Develop Project (2024 -2025)</p>
+						</div>
+						<div class="mt-4 flex justify-end gap-2">
+							<span class="badge badge-outline text-gray-700 border-gray-600 dark:border-gray-100 dark:text-gray-200">Astro.js</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div>
+				<p class="text-xl font-bold mt-8">Skills & Frameworks</p>
+				<div class="col-span-2 sm:col-span-3 p-4 flex flex-col items-center justify-center gap-2 rounded-xl bg-cyan-800/10 dark:bg-cyan-800/20 border-2 border-cyan-700/30 mt-4">
+					<ReactSvg width="40px" height="40px"/>
+					<p class="font-bold text-lg text-cyan-600">React</p>
+					<p class="text-center text-sm">Specializing in buidling modern, scalable front-end applications</p>
+				</div>
+			</div>
+			<div class="flex flex-wrap gap-10 justify-center mt-8">
+				{FrameworksList.map(item => (
+					<FrameworkComponent name={item.name} logo={item.logo} />
+				))}
+			</div>
+			<Footer/>
+		</main>
 	</body>
+	<script>
+	  (function(){
+	    const loader = document.getElementById('page-loader');
+	    if (!loader) return;
+
+	    function hideLoader() {
+	      // Fade out then remove
+	      loader.style.opacity = '0';
+	      loader.addEventListener('transitionend', function onEnd(){
+	        loader.removeEventListener('transitionend', onEnd);
+	        if (loader.parentNode) loader.parentNode.removeChild(loader);
+	      });
+	    }
+
+	    if (document.readyState === 'complete') {
+	      hideLoader();
+	    } else {
+	      window.addEventListener('load', hideLoader);
+	      // Safety fallback in case load doesn't fire
+	      setTimeout(function(){
+	        if (document.body.contains(loader)) hideLoader();
+	      }, 2500);
+	    }
+	  })();
+	</script>
 </html>

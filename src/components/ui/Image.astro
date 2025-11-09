@@ -1,0 +1,14 @@
+---
+import { Image } from 'astro:assets';
+---
+
+<div class='rounded-full w-24 h-24 overflow-hidden bg-gray-100'>
+    <Image
+        src={'/Foto_ejemplo.jpg'}
+        alt="Foto de ejemplo"
+        width="96"
+        height="96"
+        loading="eager"
+        class='rounded-full object-cover w-24 h-24 border-4 border-blue-300'
+    />
+</div>
